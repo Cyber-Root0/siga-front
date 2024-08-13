@@ -1,7 +1,7 @@
-import { Routes, Route } from 'react-router-dom';
-import RouteConfig from './config/Routes';
+import RouteConfig from './config/Router';
 const App = () => {
-   return RouteConfig();
+   return (
+      <RouteConfig />
+   );
 };
- 
 export default App;
