@@ -13,5 +13,4 @@ const RouteConfig = () => {
       </BrowserRouter>
     );
  };
-  
  export default RouteConfig;
