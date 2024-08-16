@@ -19,13 +19,16 @@ class Panel extends Component {
         }
         return bg3;
     }
+    onClick = (event) => {
+        this.onChangeUser();
+    }
     render(){
         return (
             <div className={`panel ${this.direction}-panel`}>
                 <div className="content">
                     <h3>{this.title}</h3>
                     <p>{this.description}</p>
-                    <button className="btn transparent" id="sign-up-btn" onClick={this.onChangeUser}>
+                    <button className="btn transparent" id="sign-up-btn" onClick={this.onClick}>
                         {this.button}
                     </button>
                 </div>
