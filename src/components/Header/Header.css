@@ -1,0 +1,8 @@
+/*===== NAVIGATION =====*/
+header {
+    width: 20rem;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}

@@ -1,0 +1,14 @@
+.accessibility-link {
+    display: flex;
+}
+.accessibility-link:hover {
+    color: var(--red);
+}
+.accessibility-icon {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+}
+.accessibility-link sup {
+    font-size: 1rem;
+}

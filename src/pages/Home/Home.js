@@ -4,7 +4,6 @@ import FormLogin from '../../components/FormLogin/FormLogin';
 import Panel from '../../components/FormLogin/Panel/Panel';
 import './Home.css';
 import './Animations.css';
-
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +18,7 @@ class Home extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{background: '#22202d'}}>
                 <PageLayout title={'Home'} />
                 <div className={this.state.IsTeacher ? 'container sign-up-mode' : 'container'}>
                     <FormLogin />
@@ -46,5 +45,4 @@ class Home extends Component {
         );
     }
 }
-
 export default Home;
