@@ -1,0 +1,64 @@
+@media screen and (max-width: 1150px) {
+    main {
+        justify-content: center;
+        padding: 2.5rem 0;
+    }
+
+    .content {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    main {
+        gap: 3rem;
+    }
+
+    .content {
+        display: grid;
+        justify-content: center;
+        place-items: center;
+        gap: 1.5rem;
+        width: 100vw;
+    }
+
+    .profile,
+    .options {
+        width: 100%;
+    }
+
+    .profile-options {
+        justify-content: space-between;
+        gap: 0;
+    }
+
+    .options {
+        padding: 5%;
+    }
+
+    .important-announcement {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .important-announcement {
+        padding: 0 1.5rem;
+    }
+}
+
+@media screen and (max-width: 535px) {
+
+    .profile,
+    .options {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .profile,
+    .options {
+        width: 90%;
+    }
+}

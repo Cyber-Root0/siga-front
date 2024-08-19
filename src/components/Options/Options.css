@@ -1,0 +1,8 @@
+.options {
+    display: grid;
+    gap: 2rem;
+    background-color: var(--brand);
+    border-radius: 1rem;
+    align-items: center;
+    padding: 5%;
+}

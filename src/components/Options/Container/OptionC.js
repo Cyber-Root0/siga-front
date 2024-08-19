@@ -11,18 +11,24 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
-import './Title.css';
-class Title extends Component {
-    constructor(props){
+import './Container.css';
+class OptionC extends Component {
+    constructor(props) {
         super(props);
-        this.Child = props.children;
+        this.Title = props.Title;
+        this.Icon = props.Icon;
+        this.Url = props.Url;
     }
     render() {
         return (
-                <h1 className="content-title">
-                    {this.Child}
-                </h1>
+            <div className="options-container">
+                <span className="options-title">
+                    {this.Title}
+                    <i className={this.Icon + ' options-icon'}></i>
+                </span>
+                <a href={this.Url} className="options-link">Visualizar</a>
+            </div>
         );
     }
 }
-export default Title;
+export default OptionC;

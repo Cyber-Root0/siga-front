@@ -1,3 +1,15 @@
+/**
+ * @fileoverview Integração de um Front-End em React com a API do Siga (PHP)
+ * @author Bruno Venancio Alves
+ * @contact boteistem@gmail.com
+ *
+ * Copyright (c) 2024 Bruno Venancio Alves
+ * 
+ * Permission is granted to use, copy, modify, and distribute this software,
+ * provided that this notice remains in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+ */
 import React, { Component } from 'react';
 import NavLink from './../NavLink';
 import './Menu.css';
@@ -9,14 +21,14 @@ class Menu extends Component {
                 <div className="nav-menu" id="nav-menu">
                     <ul className="nav-list">
                         <NavLink
-                            Link=""
+                            Link="/aluno/"
                             Title="Matricula"
                             isActive={true}
                             Icon="bi bi-info-circle link-icon" >
                             Matricula
                         </NavLink>
                         <NavLink
-                            Link=""
+                            Link="/aluno/consultas"
                             Title="Consultas"
                             IsActive={true}
                             Icon="bi bi-search link-icon" >

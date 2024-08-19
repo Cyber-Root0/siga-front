@@ -26,6 +26,7 @@
 a {
     text-decoration: none;
     color: var(--black);
+    cursor: pointer;
 }
 main{
     display: grid;

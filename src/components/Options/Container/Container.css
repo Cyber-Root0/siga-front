@@ -1,0 +1,23 @@
+.options-container {
+    display: grid;
+    text-align: center;
+}
+.options-title {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.options-icon {
+    font-size: 25px;
+}
+.options-link {
+    font-size: 17px;
+}
+.options-link:hover {
+    color: var(--red);
+    font-weight: 400;
+    transition: 0.1s;
+}
