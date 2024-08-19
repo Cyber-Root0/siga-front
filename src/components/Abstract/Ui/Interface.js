@@ -12,8 +12,10 @@ class UInterface extends Component {
         return (
             <PageLayout title={this.Name} >
                 <Header />
-                <main className='content'>
-                    {this.Child}
+                <main>
+                    <div className='content ui'>
+                        {this.Child}
+                    </div>
                 </main>
             </PageLayout>
         );

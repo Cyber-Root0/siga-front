@@ -25,7 +25,7 @@ class PageLayout extends Component {
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"></link>
                 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"></link>
                 </Helmet>
-                <div className={this.title}>
+                <div className={this.title + ' uipage'}>
                     {this.bodycontent}
                 </div>
             </>

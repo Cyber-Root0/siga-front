@@ -1,0 +1,19 @@
+.content-info {
+    display: grid;
+    gap: 2rem;
+    background-color: var(--brand);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+.info-user-text b {
+    font-weight: 500;
+}
+.content-user {
+    display: grid;
+    gap: 1rem;
+}
+.user-img {
+    width: 200px;
+    justify-self: center;
+    border-radius: 50%;
+}

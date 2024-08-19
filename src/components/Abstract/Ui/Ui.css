@@ -13,22 +13,28 @@
     --black: hsl(0, 0%, 0%);
 }
 /*===== GLOBAL =====*/
-* {
-    padding: 0;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-}
 
-div.Matricula {
+.ui.content {
     background-color: var(--brand-light);
     display: flex;
     align-items: center;
     color: var(--black);
+    font-size: 20px;
+    gap: 5em;
 }
 
 a {
     text-decoration: none;
+    color: var(--black);
+}
+main{
+    display: grid;
+    gap: 2.5rem;
+}
+#root .uipage{
+    background-color: var(--brand-light);
+    display: flex;
+    align-items: center;
     color: var(--black);
 }
 @media screen and (max-width: 1150px) {
@@ -87,6 +93,10 @@ a {
     #change-theme .link-text {
         display: none;
     }
+    #root .uipage{
+        width: 100vw;
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -122,7 +132,13 @@ a {
         font-size: 1.5rem;
     }
 }
-
+.ui.content .content{
+    display: flex;
+    justify-content: space-between;
+    width: 75vw;
+    align-items: center;
+    gap: 5rem;
+}
 .content-title {
     font-weight: 600;
     display: flex;
@@ -133,4 +149,23 @@ a {
 .content-title-icon {
     font-size: 2rem;
     color: var(--red);
+}
+@media screen and (max-width: 1150px) {
+    main {
+        justify-content: center;
+    }
+
+    ui.content {
+        width: 95vw;
+        margin: 2.5rem 0;
+    }
+}
+
+@media screen and (max-width: 825px) {
+    .ui.content {
+        display: grid;
+        gap: 2.5rem;
+        width: 90vw;
+        justify-content: center;
+    }
 }
