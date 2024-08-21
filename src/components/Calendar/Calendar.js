@@ -11,17 +11,17 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
-import UInterface from '../../components/Abstract/Ui/Interface';
-import UserProfile from './../../components/PageContent/UserProfile';
-import './Matricula.css';
-class Matricula extends Component {
+class Calendar extends Component {
+    constructor(props){
+        super(props);
+        this.Child = props.children;
+    }
     render() {
         return (
-            <UInterface Name={'Matricula'}>
-                <UserProfile />
-            </UInterface>
+                <div className='calendar'>
+                    {this.Child}
+                </div>
         );
     }
 }
-
-export default Matricula;
+export default Calendar;

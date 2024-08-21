@@ -11,9 +11,9 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
-import Title from '../Title/Title';
-import Office360 from '../Office360';
-import Skin from './../../assets/img/Author.jpeg';
+import Title from './../../Title';
+import Office360 from '../../Office360';
+import Skin from './../../../assets/img/Author.jpeg';
 import './UserProfile.css';
 class UserProfile extends Component {
     render() {

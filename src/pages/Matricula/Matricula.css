@@ -16,3 +16,6 @@ a {
     text-decoration: none;
     color: var(--black);
 }
+.Matricula.uipage .ui.content{
+    justify-content: space-around;
+}

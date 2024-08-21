@@ -1,0 +1,6 @@
+.calendar{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2rem;
+    font-weight: 200;
+}

@@ -11,7 +11,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
-import ProfileImg from './../../../assets/img/Author.jpeg';
+import ProfileImg from './../../../../assets/img/Author.jpeg';
 import './Small.css';
 class SmallProfile extends Component {
     render() {

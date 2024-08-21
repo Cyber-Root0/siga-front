@@ -1,3 +1,6 @@
+.Consultas.uipage .ui.content{
+    justify-content: space-around;
+}
 @media screen and (max-width: 1150px) {
     main {
         justify-content: center;

@@ -12,7 +12,7 @@
  */
 import React, { Component } from 'react';
 import UInterface from '../../components/Abstract/Ui/Interface';
-import SmallProfile from '../../components/UserProfile/Small/Small';
+import SmallProfile from '../../components/PageContent/UserProfile/Small/Small';
 import Options from '../../components/Options/Options';
 import './Consultas.css';
 class Consultas extends Component {
