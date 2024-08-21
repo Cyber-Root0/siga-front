@@ -17,7 +17,7 @@ class Menu extends Component {
     render() {
         return (
             <nav className="nav">
-                <a href="#" className="nav-logo" title="Siga 2.0"></a>
+                <a className="nav-logo" title="Siga 2.0"></a>
                 <div className="nav-menu" id="nav-menu">
                     <ul className="nav-list">
                         <NavLink
@@ -36,7 +36,7 @@ class Menu extends Component {
                         </NavLink>
                         <NavLink
                             Link=""
-                            Title="Matricula"
+                            Title="Agenda"
                             IsActive={true}
                             Icon="bi bi-calendar4-event link-icon" >
                             Agenda

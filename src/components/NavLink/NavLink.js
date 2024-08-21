@@ -10,27 +10,25 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-import React, { Component } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './NavLink.css';
-class NavLink extends Component {
-    constructor(props) {
-        super(props);
-        this.Link = props.Link;
-        this.Title = props.Title;
-        this.isActive = props.isActive;
-        this.Icon = props.Icon;
-        this.children = props.children;
-        console.log(this.isActive);
-    }
-    render() {
-        return (
-            <li className="nav-item">
-                <a href={this.Link} className={`nav-link ${this.isActive ? 'nav-link-active' : ''}`} title={this.Title}>
-                    <i className={this.Icon} />
-                    <span className="link-text">{this.children}</span>
-                </a>
-            </li>
-        );
-    }
-}
+const NavLink = ({ Link, Title, isActive, Icon, children }) => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate(Link);
+    };
+    return (
+        <li className="nav-item">
+            <a
+                onClick={handleClick}
+                className={`nav-link ${isActive ? 'nav-link-active' : ''}`}
+                title={Title}
+            >
+                <i className={Icon} />
+                <span className="link-text">{children}</span>
+            </a>
+        </li>
+    );
+};
 export default NavLink;
