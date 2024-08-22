@@ -11,6 +11,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import './Calendar.css';
 class Calendar extends Component {
     constructor(props){
         super(props);

@@ -13,6 +13,7 @@
 import React, { Component } from 'react';
 import UInterface from '../../components/Abstract/Ui/Interface';
 import NotasContent from '../../components/PageContent/Notas/Notas';
+import './Notas.css';
 class Notas extends Component {
     render() {
         return (
