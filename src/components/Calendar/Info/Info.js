@@ -18,6 +18,7 @@ class CalendarInfo extends Component {
         this.Sigla = props.Sigla;
         this.Description = props.Text;
         this.Notas = props.Notas;
+        this.Progress = props.Progress;
     }
     render() {
         return (
@@ -26,14 +27,24 @@ class CalendarInfo extends Component {
                     <p><b>Sigla:</b> {this.Sigla}</p>
                     <p>{this.Description}</p>
                 </div>
-                <div className="divisor"></div>
-                <div className="info-test">
-                    {this.Notas.map((nota, index) => (
-                        <p key={index}>
-                            <b>P{index + 1}</b> - {nota}
-                        </p>
-                    ))}
-                </div>
+                {
+                    this.Progress ? (
+                        <div className="circular-progress circular-progress">
+                            <p className="value-container value-container">{this.Progress}</p>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="divisor"></div>
+                            <div className="info-test">
+                                {this.Notas.map((nota, index) => (
+                                    <p key={index}>
+                                        <b>P{index + 1}</b> - {nota}
+                                    </p>
+                                ))}
+                            </div>
+                        </>
+                    )
+                }
             </div>
         );
     }

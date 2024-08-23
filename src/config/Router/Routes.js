@@ -16,6 +16,7 @@ import PrivateRoute from './../../middleware/Auth';
 import Home  from './../../pages/Home';
 import Matricula from '../../pages/Matricula/Matricula';
 import Consultas from '../../pages/Consultas/Consultas';
+import Frequencia from '../../pages/Frequencias/Frequencias';
 import Notas from '../../pages/Notas/Notas';
 const RouteConfig = () => {
    return (
@@ -25,6 +26,7 @@ const RouteConfig = () => {
             <Route path="/aluno/" element={<PrivateRoute component={Matricula} />} />
             <Route path="/aluno/consultas/" element={<PrivateRoute component={Consultas} />} />
             <Route path="/aluno/notas/" element={<PrivateRoute component={Notas} />} />
+            <Route path="/aluno/frequencia/" element={<PrivateRoute component={Frequencia} />} />
          </Routes>   
       </BrowserRouter>
     );
