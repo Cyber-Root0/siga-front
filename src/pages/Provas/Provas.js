@@ -12,16 +12,15 @@
  */
 import React, { Component } from 'react';
 import UInterface from '../../components/Abstract/Ui/Interface';
-import FrequenciaContent from '../../components/PageContent/Frequencia/FrequenciaContent';
-import './Frequencia.css';
-class Frequencia extends Component {
+import ProvasContent from '../../components/PageContent/Provas/Provas';
+import './Provas.css';
+class ExamDay extends Component {
     render() {
         return (
-            <UInterface Name={'Frequencia'}>
-                <FrequenciaContent />
+            <UInterface Name={'Provas'}>
+                <ProvasContent />
             </UInterface>
         );
     }
 }
-
-export default Frequencia;
+export default ExamDay;

@@ -12,16 +12,16 @@
  */
 import React, { Component } from 'react';
 import UInterface from '../../components/Abstract/Ui/Interface';
-import FrequenciaContent from '../../components/PageContent/Frequencia/FrequenciaContent';
-import './Frequencia.css';
-class Frequencia extends Component {
+import DisciplinasContent from '../../components/PageContent/Disciplinas/Disciplinas';
+import './Disciplinas.css';
+class Disciplinas extends Component {
     render() {
         return (
-            <UInterface Name={'Frequencia'}>
-                <FrequenciaContent />
+            <UInterface Name={'Disciplinas'}>
+                <DisciplinasContent />
             </UInterface>
         );
     }
 }
 
-export default Frequencia;
+export default Disciplinas;

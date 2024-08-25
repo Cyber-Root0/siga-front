@@ -35,46 +35,46 @@ class Menu extends Component {
                             Consultas
                         </NavLink>
                         <NavLink
-                            Link=""
-                            Title="Agenda"
+                            Link="/aluno/agenda/avaliacoes"
+                            Title="Provas"
                             IsActive={true}
                             Icon="bi bi-calendar4-event link-icon" >
-                            Agenda
+                            Provas
                         </NavLink>
                         <NavLink
-                            Link=""
-                            Title="Matricula"
+                            Link="/aluno/agenda/horarios"
+                            Title="Horários"
                             IsActive={true}
-                            Icon="bi bi-shield-check link-icon" >
-                            Segurança
+                            Icon="bi bi-calendar4-event link-icon" >
+                            Horários
                         </NavLink>
                         <NavLink
-                            Link=""
-                            Title="Matricula"
+                            Link="/aluno/disciplinas"
+                            Title="Disciplinas"
                             IsActive={true}
                             Icon="bi bi-chat-square-text link-icon" >
-                            Solicitações
+                            Disciplinas
                         </NavLink>
                         <NavLink
                             Link=""
-                            Title="Matricula"
-                            IsActive={true}
-                            Icon="bi bi-file-earmark-arrow-up link-icon" >
-                            Upload Arquivos
-                        </NavLink>
-                        <NavLink
-                            Link=""
-                            Title="Matricula"
+                            Title="Plano de Ensino"
                             IsActive={true}
                             Icon="bi bi-book link-icon" >
                             Plano de Ensino
                         </NavLink>
                         <NavLink
                             Link=""
-                            Title="Matricula"
+                            Title="Manual"
                             IsActive={true}
-                            Icon="bi bi-folder2-open link-icon" >
-                            Matriz Inglês
+                            Icon="bi bi-question-octagon link-icon" >
+                            Manual
+                        </NavLink>
+                        <NavLink
+                            Link=""
+                            Title="Manual"
+                            IsActive={true}
+                            Icon="bi bi-telephone-outbound link-icon" >
+                            Suporte
                         </NavLink>
                         <li className="nav-item nav-item-theme">
                             <a href="#" className="nav-link" id="change-theme" title="Mudar Tema">

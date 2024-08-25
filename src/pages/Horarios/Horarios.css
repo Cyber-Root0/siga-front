@@ -1,0 +1,15 @@
+.Horarios.uipage.uipage main{
+    justify-content: center;
+}
+.Horarios.uipage .content.ui{
+    background-color: var(--brand);
+    padding: 2.5rem 3.5rem;
+    border-radius: 1rem;
+    display: grid;
+    width: 70vw;
+    gap: 2rem;
+}
+.Horarios.uipage .calendar-info{
+    flex-wrap: wrap;
+    gap: 10px;
+}

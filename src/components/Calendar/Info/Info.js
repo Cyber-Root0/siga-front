@@ -19,6 +19,14 @@ class CalendarInfo extends Component {
         this.Description = props.Text;
         this.Notas = props.Notas;
         this.Progress = props.Progress;
+        this.Date = props.Date;
+        this.Teacher = props.Teacher;
+        if (!this.Notas){
+            this.Notas = this.Date;
+        }
+        if (!this.Date && !this.Notas){
+            this.Notas = [];
+        }
     }
     render() {
         return (
@@ -26,6 +34,7 @@ class CalendarInfo extends Component {
                 <div className="info-course">
                     <p><b>Sigla:</b> {this.Sigla}</p>
                     <p>{this.Description}</p>
+                    { this.Teacher ?  (<p> Prof.: <strong>{this.Teacher}</strong> </p>) : '' }
                 </div>
                 {
                     this.Progress ? (
@@ -36,6 +45,7 @@ class CalendarInfo extends Component {
                         <>
                             <div className="divisor"></div>
                             <div className="info-test">
+                                
                                 {this.Notas.map((nota, index) => (
                                     <p key={index}>
                                         <b>P{index + 1}</b> - {nota}

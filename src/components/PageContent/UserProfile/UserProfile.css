@@ -17,3 +17,13 @@
     justify-self: center;
     border-radius: 50%;
 }
+.info-user-text{
+    word-break: break-all;
+    max-width: 40vw;
+}
+@media screen and (max-width: 860px){
+    .info-user-text{
+        word-break: break-all;
+        max-width: unset;
+    }
+}

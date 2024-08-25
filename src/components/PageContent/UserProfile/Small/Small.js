@@ -23,11 +23,11 @@ class SmallProfile extends Component {
                             title="Foto de perfil do aluno" />
                     </div>
                     <div className="profile-info">
-                        <h2>BRUNO VENÂNCIO ALVES</h2>
+                        <h2 className='info-user-text'>BRUNO VENÂNCIO ALVES</h2>
                         <div className="info-course">
-                            <h3 className="info-course-title">FATEC PRESIDENTE PRUDENTE</h3>
+                            <h3 className="info-course-title info-user-text">FATEC PRESIDENTE PRUDENTE</h3>
                             <div>
-                                <p>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - NOITE</p>
+                                <p className='info-user-text'>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - NOITE</p>
                                 <p><b>RA:</b> 1111234567890</p>
                             </div>
                         </div>

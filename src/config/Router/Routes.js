@@ -18,6 +18,9 @@ import Matricula from '../../pages/Matricula/Matricula';
 import Consultas from '../../pages/Consultas/Consultas';
 import Frequencia from '../../pages/Frequencias/Frequencias';
 import Notas from '../../pages/Notas/Notas';
+import ExamDay from '../../pages/Provas/Provas';
+import Horarios from '../../pages/Horarios/Horarios';
+import Disciplinas from '../../pages/Disciplinas/Disciplinas';
 const RouteConfig = () => {
    return (
       <BrowserRouter>
@@ -27,6 +30,9 @@ const RouteConfig = () => {
             <Route path="/aluno/consultas/" element={<PrivateRoute component={Consultas} />} />
             <Route path="/aluno/notas/" element={<PrivateRoute component={Notas} />} />
             <Route path="/aluno/frequencia/" element={<PrivateRoute component={Frequencia} />} />
+            <Route path="/aluno/agenda/avaliacoes" element={<PrivateRoute component={ExamDay} />} />
+            <Route path="/aluno/agenda/horarios" element={<PrivateRoute component={Horarios} />} />
+            <Route path="/aluno/disciplinas" element={<PrivateRoute component={Disciplinas} />} />
          </Routes>   
       </BrowserRouter>
     );

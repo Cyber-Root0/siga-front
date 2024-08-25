@@ -27,7 +27,7 @@
 .info-test,
 .info-course {
     line-height: 30px;
-    width: max-content;
+    /*width: max-content;*/
 }
 
 /* TUDO PORCENTAGEM  */

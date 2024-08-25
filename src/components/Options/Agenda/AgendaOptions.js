@@ -11,24 +11,23 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
-import './Container.css';
-class OptionC extends Component {
-    constructor(props) {
-        super(props);
-        this.Title = props.Title;
-        this.Icon = props.Icon;
-        this.Url = props.Url;
-    }
+import OptionC from './../Container/OptionC';
+class AgendaOptions extends Component {
     render() {
         return (
-            <div className="options-container">
-                <span className="options-title">
-                <i className={this.Icon + ' options-icon'}></i>
-                    {this.Title}
-                </span>
-                <a href={this.Url} className="options-link">Visualizar</a>
+            <div className="options">
+                <OptionC 
+                    Title="DATA DAS AVALIAÇÕES"
+                    Url="/aluno/agenda/avaliacoes"
+                    Icon="bi bi-calendar-plus link-icon"
+                />
+                <OptionC 
+                    Title="HORÁRIO DAS AULAS"
+                    Url="/aluno/agenda/aulas"
+                    Icon="bi bi-card-list options-icon"
+                />
             </div>
         );
     }
 }
-export default OptionC;
+export default AgendaOptions;
