@@ -11,21 +11,24 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 class Storage{
-    set(key, data){
+    prefix(){
+        return 'sigafront_';
+    }
+    set(key, data, expiration = ''){
         if (!key || !data){
             throw new Error('Missing two args on functions');
         }
-        localStorage.setItem('key', data);
+        localStorage.setItem(this.prefix()+key, data);
     }
     get(key = false){
-        if (!key){
+        if (!key){ 
             throw new Error('missing database key');
         }
-        data = localStorage.getItem(key);
+        const data = localStorage.getItem(this.prefix()+key);
         if (data){
             return data;
         }
-        return '';
+        return ''; 
     }
 }
 export default Storage;

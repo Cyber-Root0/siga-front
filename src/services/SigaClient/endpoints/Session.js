@@ -18,8 +18,14 @@ class SessionService {
     createSession(id, password) {
         return this.apiService.post(ENDPOINTS.SESSION_CREATE, { id, password });
     }
-    validSession(uid){
-        return this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
+    async validSession(uid){ 
+        const response = await this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
+        if (response === false || (response.error && response.error === 400) ){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 }
 export default SessionService;

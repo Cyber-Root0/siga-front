@@ -11,15 +11,25 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import GlobalContainer from "../DI/Container";
-import Storage from "../Storage";
 class Login{
     constructor(){
-        this.session = GlobalContainer.resolve(SessionService);
+        this.session = GlobalContainer.resolve('SessionServices');
+        this.storage = GlobalContainer.resolve('Storages');
     }
     async login(user, password){
-        const uid = await this.session.createSession(user, password);
+        const response = await this.session.createSession(user, password);
+        const {
+            session_id
+        } = response;
+        const validation =  await this.verifyLogin(session_id);
+        if (validation){
+            this.storage.set('token', session_id);
+            return true;
+        }
+        return false;
     }
-    verifyLogin(uid){
-        const data = this.session.validSession(uid);
+    async verifyLogin(uid){
+        return await this.session.validSession(uid);
     }
 }
+export default Login;

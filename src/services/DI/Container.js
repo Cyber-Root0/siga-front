@@ -19,7 +19,11 @@ class GlobalContainer {
         if (!this.dependencies[name]) {
             throw new Error(`A dependência ${name} não foi registrada.`);
         }
-        return this.dependencies[name];
+        const dependency = this.dependencies[name];
+        if (typeof dependency === 'function'){
+            return dependency();
+        }
+        return dependency;
     }
 }
 export default GlobalContainer;

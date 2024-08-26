@@ -3,26 +3,30 @@ import SessionService from "../../services/SigaClient/endpoints/Session";
 import ApiService from "../../services/SigaClient/ApiService";
 import AuthService from "../../services/SigaClient/AuthService";
 import FaltasService from "../../services/SigaClient/endpoints/Faltas";
+import Storage from "../../services/Storage/Storage";
 import Config from "../Config";
 const dependency = {
     config: {
         token: Config.token,
         url: Config.url
     },
-    AuthService: () => {
+    AuthService(){
         return new AuthService(this.config.token);
     },
-    ApiService: () => {
+    ApiService(){
         return new ApiService(
             this.config.url,
             this.AuthService()
         );
     },
-    SessionService: () => {
+    SessionServices(){
         return new SessionService(this.ApiService());
     },
-    FaltasService: () => {
+    FaltasServices(){
         return new FaltasService(this.ApiService());
+    },
+    Storages(){
+        return new Storage();
     }
 };
 const InjectorDI = () => {

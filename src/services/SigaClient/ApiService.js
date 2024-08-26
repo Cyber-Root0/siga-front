@@ -16,7 +16,7 @@ class ApiService {
         this.httpClient = axios.create({
             baseURL,
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
         });
         this.authService = authService;
@@ -28,11 +28,31 @@ class ApiService {
             return config;
         });
     }
-    post(path, data) {
-        return this.httpClient.post(path, data);
+    async post(path, data) {
+        try{
+            const dataForm = new FormData();
+            Object.entries(data).forEach(([key, value]) => {
+                dataForm.append(key, value);
+            });
+            const response = await this.httpClient.post(path, dataForm);
+            if (response.status != 200){
+                return Error('Unvailable server or verify the payload');
+            }
+            return response.data;
+        }catch(err){
+            throw new Error('Erro ao processar solicitação');
+        }
     }
-    get(path, params = {}) {
-        return this.httpClient.get(path, { params });
+    async get(path, params = {}) {
+        try{
+           const response = await this.httpClient.get(path, { params });
+           if (response.status != 200){
+                return false;
+           }
+           return response.data;
+        }catch(error){
+            return false
+        }
     }
 }
 
