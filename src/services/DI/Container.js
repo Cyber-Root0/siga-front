@@ -10,12 +10,16 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import InjectorDI from './config/DI/Injector';
-InjectorDI();
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App/>
-);
+class GlobalContainer {
+    static dependencies = {};
+    static register(name, dependency) {
+        this.dependencies[name] = dependency;
+    }
+    static resolve(name) {
+        if (!this.dependencies[name]) {
+            throw new Error(`A dependência ${name} não foi registrada.`);
+        }
+        return this.dependencies[name];
+    }
+}
+export default GlobalContainer;

@@ -30,7 +30,7 @@ class Office360 extends Component {
                 </span>
                 <span>
                     <b>Termos de uso:</b>
-                    <a href="https://www.microsoft.com/pt-br/microsoft-365/business/terms-and-conditions" target="_blank" className="office-link">Clique aqui</a>
+                    <a href="https://www.microsoft.com/pt-br/microsoft-365/business/terms-and-conditions" target="_blank" rel='noreferrer' className="office-link">Clique aqui</a>
                 </span>
             </div>
             <div className="office-footer">

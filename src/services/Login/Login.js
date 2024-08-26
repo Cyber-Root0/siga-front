@@ -10,12 +10,16 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import InjectorDI from './config/DI/Injector';
-InjectorDI();
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App/>
-);
+import GlobalContainer from "../DI/Container";
+import Storage from "../Storage";
+class Login{
+    constructor(){
+        this.session = GlobalContainer.resolve(SessionService);
+    }
+    async login(user, password){
+        const uid = await this.session.createSession(user, password);
+    }
+    verifyLogin(uid){
+        const data = this.session.validSession(uid);
+    }
+}

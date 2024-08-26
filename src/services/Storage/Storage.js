@@ -10,12 +10,22 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import InjectorDI from './config/DI/Injector';
-InjectorDI();
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App/>
-);
+class Storage{
+    set(key, data){
+        if (!key || !data){
+            throw new Error('Missing two args on functions');
+        }
+        localStorage.setItem('key', data);
+    }
+    get(key = false){
+        if (!key){
+            throw new Error('missing database key');
+        }
+        data = localStorage.getItem(key);
+        if (data){
+            return data;
+        }
+        return '';
+    }
+}
+export default Storage;

@@ -10,12 +10,16 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import InjectorDI from './config/DI/Injector';
-InjectorDI();
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App/>
-);
+import { ENDPOINTS } from "../Endpoints";
+class SessionService {
+    constructor(apiService) {
+        this.apiService = apiService;
+    }
+    createSession(id, password) {
+        return this.apiService.post(ENDPOINTS.SESSION_CREATE, { id, password });
+    }
+    validSession(uid){
+        return this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
+    }
+}
+export default SessionService;

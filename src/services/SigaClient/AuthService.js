@@ -10,12 +10,15 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import InjectorDI from './config/DI/Injector';
-InjectorDI();
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App/>
-);
+class AuthService {
+    constructor(token) {
+        this.token = token;
+    }
+    setToken(token) {
+        this.token = token;
+    }
+    getToken() {
+        return this.token;
+    }
+}
+export default AuthService;
