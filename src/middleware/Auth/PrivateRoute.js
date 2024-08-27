@@ -13,6 +13,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import GlobalContainer from '../../services/DI/Container';
+import SplashScreen from '../../components/SplashScreen/Splash';
 const PrivateRoute = (props) => {
   const { Component } = props;
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -23,14 +24,15 @@ const PrivateRoute = (props) => {
       const loggedIn = await Auth.isLoggedIn();
       setIsAuthenticated(loggedIn);
     };
-
-    checkAuthentication();
+    const timer = setTimeout(() => {
+      checkAuthentication(); 
+    }, 2000);
+    return () => clearTimeout(timer);
   }, []);
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>;
+    return <SplashScreen />;
   }
   return isAuthenticated ? <> <Component {...props} /> </> : <> <Navigate to="/" /></>;
 };
-
 export default PrivateRoute;

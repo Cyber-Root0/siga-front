@@ -53,7 +53,6 @@ class Login{
         const token = this.storage.get('token');
         const valid = await this.verifyLogin(token);
         if (token && valid){
-            console.log('validou');
             return true;
         }else{
             return false;
