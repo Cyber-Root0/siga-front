@@ -12,9 +12,20 @@
  */
 class GlobalContainer {
     static dependencies = {};
+    /**
+     * register a new directive
+     * @param {string} name
+     * @param {object} dependency
+     * @returns {string | object}
+     */
     static register(name, dependency) {
         this.dependencies[name] = dependency;
     }
+    /**
+     * return depency the same key
+     * @param {string} name
+     * @returns {any}
+     */
     static resolve(name) {
         if (!this.dependencies[name]) {
             throw new Error(`A dependência ${name} não foi registrada.`);

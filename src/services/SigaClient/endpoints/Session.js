@@ -12,12 +12,28 @@
  */
 import { ENDPOINTS } from "../Endpoints";
 class SessionService {
+    /**
+     * DI Params
+     * @param {object} apiService
+     * @returns {void}
+     */
     constructor(apiService) {
         this.apiService = apiService;
     }
+    /**
+     * create a new session
+     * @param {string} id
+     * @param {string} password
+     * @returns {object}
+     */
     createSession(id, password) {
         return this.apiService.post(ENDPOINTS.SESSION_CREATE, { id, password });
     }
+    /**
+     * valid session of user
+     * @param {string} uid
+     * @returns {boolean}
+     */
     async validSession(uid){ 
         const response = await this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
         if (response === false || (response.error && response.error === 400) ){

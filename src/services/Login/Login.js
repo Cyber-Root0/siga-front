@@ -15,7 +15,16 @@ class Login{
     constructor(){
         this.session = GlobalContainer.resolve('SessionServices');
         this.storage = GlobalContainer.resolve('Storages');
+        this.isLoggedIn = this.isLoggedIn.bind(this);
+        this.login = this.login.bind(this);
+        this.verifyLogin = this.verifyLogin.bind(this);
     }
+    /**
+     * Send auth credentials to api and valid the login
+     * @param {string} user
+     * @param {string} password
+     * @returns {boolean}
+     */
     async login(user, password){
         const response = await this.session.createSession(user, password);
         const {
@@ -28,8 +37,27 @@ class Login{
         }
         return false;
     }
+    /**
+     * valid token of user by API
+     * @param {any} uid
+     * @returns {any}
+     */
     async verifyLogin(uid){
         return await this.session.validSession(uid);
+    }
+    /**
+     * verify if current user is logged
+     * @returns {boolean}
+     */
+    async isLoggedIn(){
+        const token = this.storage.get('token');
+        const valid = await this.verifyLogin(token);
+        if (token && valid){
+            console.log('validou');
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 export default Login;

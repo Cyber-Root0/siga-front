@@ -12,6 +12,12 @@
  */
 import axios from 'axios';
 class ApiService {
+    /**
+     * set DI params
+     * @param {string} baseURL
+     * @param {object} authService
+     * @returns {void}
+     */
     constructor(baseURL, authService) {
         this.httpClient = axios.create({
             baseURL,
@@ -28,6 +34,12 @@ class ApiService {
             return config;
         });
     }
+    /**
+     * send post request
+     * @param {string} path
+     * @param {object} data
+     * @returns {object}
+     */
     async post(path, data) {
         try{
             const dataForm = new FormData();
@@ -43,6 +55,12 @@ class ApiService {
             throw new Error('Erro ao processar solicitação');
         }
     }
+    /**
+     * send get request
+     * @param {string} path
+     * @param {object} params={}
+     * @returns {object}
+     */
     async get(path, params = {}) {
         try{
            const response = await this.httpClient.get(path, { params });

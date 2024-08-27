@@ -4,6 +4,7 @@ import ApiService from "../../services/SigaClient/ApiService";
 import AuthService from "../../services/SigaClient/AuthService";
 import FaltasService from "../../services/SigaClient/endpoints/Faltas";
 import Storage from "../../services/Storage/Storage";
+import Login from "../../services/Login/Login";
 import Config from "../Config";
 const dependency = {
     config: {
@@ -27,6 +28,9 @@ const dependency = {
     },
     Storages(){
         return new Storage();
+    },
+    Logins(){
+        return new Login();
     }
 };
 const InjectorDI = () => {

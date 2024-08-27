@@ -10,13 +10,27 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-import React from 'react';
-import {Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import GlobalContainer from '../../services/DI/Container';
+const PrivateRoute = (props) => {
+  const { Component } = props;
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  //const isAuthenticated = !!localStorage.getItem('token');
-  const isAuthenticated = true;
-  return isAuthenticated ? <Component {...rest} /> : <Navigate to="/" />;
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      const Auth = GlobalContainer.resolve('Logins');
+      const loggedIn = await Auth.isLoggedIn();
+      setIsAuthenticated(loggedIn);
+    };
+
+    checkAuthentication();
+  }, []);
+
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }
+  return isAuthenticated ? <> <Component {...props} /> </> : <> <Navigate to="/" /></>;
 };
 
 export default PrivateRoute;

@@ -12,9 +12,19 @@
  */
 import { ENDPOINTS } from "../Endpoints";
 class DisciplinasService {
+    /**
+     * DI params
+     * @param {object} apiService
+     * @returns {void}
+     */
     constructor(apiService) {
         this.apiService = apiService;
     }
+    /**
+     * get all disciplinas of user
+     * @param {string} uid
+     * @returns {void}
+     */
     getAllDisciplinas(uid) {
         return this.apiService.get(ENDPOINTS.DISCIPLINAS_ALL, { uid });
     }

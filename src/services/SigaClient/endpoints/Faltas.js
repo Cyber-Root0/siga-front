@@ -12,10 +12,19 @@
  */
 import { ENDPOINTS } from "../Endpoints";
 class FaltasService {
+    /**
+     * DI params
+     * @param {object} apiService
+     * @returns {void}
+     */
     constructor(apiService) {
         this.apiService = apiService;
     }
-
+    /**
+     * get all faltas of SIGA
+     * @param {string} uid
+     * @returns {object}
+     */
     getAllFaltas(uid) {
         return this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
     }

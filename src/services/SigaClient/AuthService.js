@@ -14,9 +14,18 @@ class AuthService {
     constructor(token) {
         this.token = token;
     }
+    /**
+     * SetToken
+     * @param {string} token
+     * @returns {void}
+     */
     setToken(token) {
         this.token = token;
     }
+    /**
+     * return current apikey
+     * @returns {string}
+     */
     getToken() {
         return this.token;
     }

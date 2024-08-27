@@ -26,13 +26,13 @@ const RouteConfig = () => {
       <BrowserRouter>
           <Routes>
             <Route path="/" exact element={<Home/>}/>
-            <Route path="/aluno/" element={<PrivateRoute component={Matricula} />} />
-            <Route path="/aluno/consultas/" element={<PrivateRoute component={Consultas} />} />
-            <Route path="/aluno/notas/" element={<PrivateRoute component={Notas} />} />
-            <Route path="/aluno/frequencia/" element={<PrivateRoute component={Frequencia} />} />
-            <Route path="/aluno/agenda/avaliacoes" element={<PrivateRoute component={ExamDay} />} />
-            <Route path="/aluno/agenda/horarios" element={<PrivateRoute component={Horarios} />} />
-            <Route path="/aluno/disciplinas" element={<PrivateRoute component={Disciplinas} />} />
+            <Route path="/aluno/" element={<PrivateRoute Component={Matricula} />} />
+            <Route path="/aluno/consultas/" element={<PrivateRoute Component={Consultas} />} />
+            <Route path="/aluno/notas/" element={<PrivateRoute Component={Notas} />} />
+            <Route path="/aluno/frequencia/" element={<PrivateRoute Component={Frequencia} />} />
+            <Route path="/aluno/agenda/avaliacoes" element={<PrivateRoute Component={ExamDay} />} />
+            <Route path="/aluno/agenda/horarios" element={<PrivateRoute Component={Horarios} />} />
+            <Route path="/aluno/disciplinas" element={<PrivateRoute Component={Disciplinas} />} />
          </Routes>   
       </BrowserRouter>
     );
