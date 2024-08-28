@@ -11,6 +11,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import Redirect from '../../../services/Browser/Browser';
 import './Container.css';
 class OptionC extends Component {
     constructor(props) {
@@ -18,6 +19,11 @@ class OptionC extends Component {
         this.Title = props.Title;
         this.Icon = props.Icon;
         this.Url = props.Url;
+        this.Navigate = props.navigate;
+        this.Redirect = this.Redirect.bind(this);
+    }
+    Redirect(){
+        this.Navigate(this.Url);
     }
     render() {
         return (
@@ -26,9 +32,9 @@ class OptionC extends Component {
                 <i className={this.Icon + ' options-icon'}></i>
                     {this.Title}
                 </span>
-                <a href={this.Url} className="options-link">Visualizar</a>
+                <a onClick={this.Redirect} className="options-link">Visualizar</a>
             </div>
         );
     }
 }
-export default OptionC;
+export default Redirect(OptionC);

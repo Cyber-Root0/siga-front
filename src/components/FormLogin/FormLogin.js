@@ -11,6 +11,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import Redirect from '../../services/Browser/Browser';
 import InputField from '../InputField/Input';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import Login from '../../services/Login/Login';
@@ -36,6 +37,7 @@ class FormLogin extends Component {
                 text: 'Login efetuado com sucesso!',
                 icon: 'success'
             });
+            this.props.navigate('/aluno/');
         } else {
             Swal.fire({
                 title: 'Error!',
@@ -86,4 +88,4 @@ class FormLogin extends Component {
         );
     }
 }
-export default FormLogin;
+export default Redirect(FormLogin);

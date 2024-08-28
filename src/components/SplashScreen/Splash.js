@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import FatecLogo from './../../assets/img/FatecLogo.png';
 import "./SplashScreen.css";
 const SplashScreen = ({ onSplashEnd }) => {

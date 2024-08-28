@@ -11,10 +11,15 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import Redirect from '../../../services/Browser/Browser';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import Schedule from '../../Schedule';
 class ScheduleContent extends Component {
+    constructor(props){
+        super(props);
+        this.Navigate = props.navigate;
+    }
     getDates = () => {
         return [
             {
@@ -39,7 +44,7 @@ class ScheduleContent extends Component {
         return (
             <>
                 <Title>
-                    <a href="/aluno" className="nav-link" title="Plano de Ensino">
+                <a className="nav-link" title="Plano de Ensino" onClick={ ()=>{this.Navigate('/aluno')} }>
                         <i className="bi bi-arrow-left-circle link-icon content-title-icon"></i>
                     </a>
                     HORÁRIOS
@@ -58,4 +63,4 @@ class ScheduleContent extends Component {
         );
     }
 }
-export default ScheduleContent;
+export default Redirect(ScheduleContent);

@@ -11,15 +11,20 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import Redirect from '../../../services/Browser/Browser';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import CalendarInfo from '../../Calendar/Info/Info';
 class ProvasContent extends Component {
+    constructor(props){
+        super(props);
+        this.Navigate = props.navigate;
+    }
     render() {
         return (
             <>
                 <Title>
-                    <a href="/aluno" className="nav-link" title="Plano de Ensino">
+                <a className="nav-link" title="Plano de Ensino" onClick={ ()=>{this.Navigate('/aluno')} }>
                         <i className="bi bi-arrow-left-circle link-icon content-title-icon"></i>
                     </a>
                     Data das Provas
@@ -60,4 +65,4 @@ class ProvasContent extends Component {
         );
     }
 }
-export default ProvasContent;
+export default Redirect(ProvasContent);

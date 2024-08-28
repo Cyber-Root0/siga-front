@@ -14,12 +14,21 @@ import React, { Component } from 'react';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import CalendarInfo from '../../Calendar/Info/Info';
+import Redirect from '../../../services/Browser/Browser';
 class NotasContent extends Component {
+    constructor(props){
+        super(props);
+        this.Navigate = props.navigate;
+        this.Redirect = this.Redirect.bind(this);
+    }
+    Redirect(Url){
+        this.Navigate(Url);
+    }
     render() {
         return (
             <>
                 <Title>
-                    <a href="/aluno/consultas" className="nav-link" title="Plano de Ensino">
+                    <a className="nav-link" title="Plano de Ensino" onClick={ () =>{this.Redirect('/aluno/consultas')}  }>
                         <i className="bi bi-arrow-left-circle link-icon content-title-icon"></i>
                     </a>
                     Notas Parciais
@@ -60,4 +69,4 @@ class NotasContent extends Component {
         );
     }
 }
-export default NotasContent;
+export default Redirect(NotasContent);
