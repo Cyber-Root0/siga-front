@@ -1,3 +1,4 @@
+import Loading from '../Loading/Loading';
 import FatecLogo from './../../assets/img/FatecLogo.png';
 import "./SplashScreen.css";
 const SplashScreen = ({ onSplashEnd }) => {
@@ -8,6 +9,7 @@ const SplashScreen = ({ onSplashEnd }) => {
         alt="Siga Logo Fatec"
         className="splash-logo"
       />
+      <Loading />
     </div>
   );
 };

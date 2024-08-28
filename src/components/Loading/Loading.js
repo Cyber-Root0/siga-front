@@ -10,10 +10,13 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-export const ENDPOINTS = {
-    SESSION_CREATE: '/api/session/create',
-    DISCIPLINAS_ALL: '/api/disciplinas/all',
-    FALTAS_ALL: '/api/faltas/all',
-    NOTAS_ALL: '/api/notas/all',
-    ALUNO_INFO: '/api/aluno/all/'
-};
+import React, { Component } from 'react';
+import './Loading.css';
+class Loading extends Component {
+    render() {
+        return (
+            <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        );
+    }
+}
+export default Loading;

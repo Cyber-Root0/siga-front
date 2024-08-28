@@ -11,6 +11,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import GlobalContainer from '../../../services/DI/Container';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import CalendarInfo from '../../Calendar/Info/Info';
@@ -20,6 +21,13 @@ class NotasContent extends Component {
         super(props);
         this.Navigate = props.navigate;
         this.Redirect = this.Redirect.bind(this);
+    }
+    async componentDidMount() {
+        await this.getData();
+    }
+    async getData() {
+        const NotasService = await GlobalContainer.resolve('NotasServices');
+        const data = await NotasService.getAllNotas();
     }
     Redirect(Url){
         this.Navigate(Url);

@@ -10,6 +10,7 @@
     background-color: #D3010E;
     z-index: 9999;
     animation: fadeIn 1s ease-in-out;
+    flex-wrap: wrap;
   }
   .splash-logo {
     width: 400px;

@@ -11,30 +11,60 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import GlobalContainer from '../../../../services/DI/Container';
+import Loading from '../../../Loading/Loading';
 import ProfileImg from './../../../../assets/img/Author.jpeg';
 import './Small.css';
 class SmallProfile extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            info: {
+                REGISTRO_ACADEMICO: '',
+                NOME: '',
+                CURSO: '',
+                TURNO: '',
+                EMAIL: '',
+                FOTO_URL: ProfileImg
+            },
+            loading: false
+        };
+    }
+    async componentDidMount() {
+        await this.getData();
+    }
+    async getData() {
+        const AlunoService = await GlobalContainer.resolve('AlunoServices');
+        const data = await AlunoService.getAlunoInfo();
+        this.setState((prev) =>(
+            {
+                ...prev,
+                info: data,
+                loading: true
+            }
+        ) );
+    }
     render() {
-        return (
+        return this.state.loading === true ? (
             <>
                 <div className="profile">
                     <div className="profile-options">
-                        <img className="profile-img" src={ProfileImg} alt="Foto de perfil do aluno"
+                        <img className="profile-img" src={this.state.info.FOTO_URL} alt="Foto de perfil do aluno"
                             title="Foto de perfil do aluno" />
                     </div>
                     <div className="profile-info">
-                        <h2 className='info-user-text'>BRUNO VENÂNCIO ALVES</h2>
+                        <h2 className='info-user-text'>{this.state.info.NOME}</h2>
                         <div className="info-course">
                             <h3 className="info-course-title info-user-text">FATEC PRESIDENTE PRUDENTE</h3>
                             <div>
-                                <p className='info-user-text'>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - NOITE</p>
-                                <p><b>RA:</b> 1111234567890</p>
+                                <p className='info-user-text'>{this.state.info.CURSO} - {this.state.info.TURNO}</p>
+                                <p><b>RA:</b> {this.state.info.REGISTRO_ACADEMICO}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </>
-        );
+        ) : <Loading />;
     }
 }
 export default SmallProfile;

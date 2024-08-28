@@ -3,7 +3,9 @@ import SessionService from "../../services/SigaClient/endpoints/Session";
 import ApiService from "../../services/SigaClient/ApiService";
 import AuthService from "../../services/SigaClient/AuthService";
 import FaltasService from "../../services/SigaClient/endpoints/Faltas";
+import AlunoService from "../../services/SigaClient/endpoints/Aluno";
 import Storage from "../../services/Storage/Storage";
+import NotasService from "../../services/SigaClient/endpoints/Notas";
 import Login from "../../services/Login/Login";
 import Config from "../Config";
 const dependency = {
@@ -31,6 +33,12 @@ const dependency = {
     },
     Logins(){
         return new Login();
+    },
+    AlunoServices(){
+        return new AlunoService(this.ApiService());
+    },
+    NotasServices(){
+        return new NotasService(this.ApiService());
     }
 };
 const InjectorDI = () => {
