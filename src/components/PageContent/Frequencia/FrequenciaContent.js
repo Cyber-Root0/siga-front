@@ -15,62 +15,57 @@ import Redirect from '../../../services/Browser/Browser';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import CalendarInfo from '../../Calendar/Info/Info';
+import Loading from '../../Loading/Loading';
 import progressBar from './Effect';
+import GlobalContainer from '../../../services/DI/Container';
 class FrequenciaContent extends Component {
-    componentDidMount() {
-        progressBar();
-    }
     constructor(props) {
         super(props);
         this.Navigate = props.navigate;
         this.Redirect = this.Redirect.bind(this);
+        this.state = {
+            data: [],
+            loading: false
+        };
+    }
+    async componentDidMount() {
+        await this.getData();
+    }
+    componentDidUpdate() {
+        progressBar();
+    }
+    async getData() {
+        const FaltasService = await GlobalContainer.resolve('FaltasServices');
+        const data = await FaltasService.getAllFaltas();
+        this.setState( (preV) => ({
+            ...preV,
+            data: data,
+            loading: true
+        }) );
     }
     Redirect(Url) {
         this.Navigate(Url);
     }
     render() {
-        return (
+        return this.state.loading === true ? (
             <>
                 <Title>
-                    <a className="nav-link" title="Plano de Ensino" onClick={ () => {this.Redirect('/aluno/consultas')} }>
+                    <a className="nav-link" title="Plano de Ensino" onClick={() => { this.Redirect('/aluno/consultas') }}>
                         <i className="bi bi-arrow-left-circle link-icon content-title-icon"></i>
                     </a>
                     Frequência
                 </Title>
                 <Calendar>
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Progress={73}
-                    />
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Progress={78}
-                    />
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Progress={87}
-                    />
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Progress={45}
-                    />
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Progress={68}
-                    />
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Progress={100}
-                    />
+                    {this.state.data.map(frequencia => (
+                        <CalendarInfo
+                            Sigla={frequencia.ID}
+                            Text={frequencia.DESCRICAO}
+                            Progress={ frequencia.TOTAL > 0 ? ((frequencia.PRESENCAS / frequencia.TOTAL).toFixed(2) *100) : 1 }
+                        />
+                    ))}
                 </Calendar>
             </>
-        );
+        ) : <Loading /> ;
     }
 }
 export default Redirect(FrequenciaContent);

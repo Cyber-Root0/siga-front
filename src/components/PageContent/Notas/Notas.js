@@ -12,15 +12,20 @@
  */
 import React, { Component } from 'react';
 import GlobalContainer from '../../../services/DI/Container';
+import Loading from '../../Loading/Loading';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import CalendarInfo from '../../Calendar/Info/Info';
 import Redirect from '../../../services/Browser/Browser';
 class NotasContent extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.Navigate = props.navigate;
         this.Redirect = this.Redirect.bind(this);
+        this.state = {
+            loading: false,
+            data: []
+        };
     }
     async componentDidMount() {
         await this.getData();
@@ -28,53 +33,35 @@ class NotasContent extends Component {
     async getData() {
         const NotasService = await GlobalContainer.resolve('NotasServices');
         const data = await NotasService.getAllNotas();
+        this.setState( (preV) => ({
+            ...preV,
+            data: data,
+            loading: true
+        }) );
     }
-    Redirect(Url){
+    Redirect(Url) {
         this.Navigate(Url);
     }
     render() {
-        return (
+        return this.state.loading === true ? (
             <>
                 <Title>
-                    <a className="nav-link" title="Plano de Ensino" onClick={ () =>{this.Redirect('/aluno/consultas')}  }>
+                    <a className="nav-link" title="Plano de Ensino" onClick={() => { this.Redirect('/aluno/consultas') }}>
                         <i className="bi bi-arrow-left-circle link-icon content-title-icon"></i>
                     </a>
                     Notas Parciais
                 </Title>
                 <Calendar>
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Notas={[7, 8, 9]}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Notas={[7, 8, 9]}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Notas={[7, 8, 9]}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Notas={[7, 8, 9]}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Notas={[7, 8, 9]}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Notas={[7, 8, 9]}
-                     />
+                    {this.state.data.map(nota => (
+                        <CalendarInfo
+                            Sigla={nota.id}
+                            Text={nota.descricao}
+                            Notas={nota.notas.length > 0 ? nota.notas : [0, 0, 0]}
+                        />
+                    ))}
                 </Calendar>
             </>
-        );
+        ) : <Loading />;
     }
 }
 export default Redirect(NotasContent);

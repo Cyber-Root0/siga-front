@@ -11,6 +11,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import { ENDPOINTS } from "../Endpoints";
+import GlobalContainer from "../../DI/Container";
 class FaltasService {
     /**
      * DI params
@@ -19,14 +20,18 @@ class FaltasService {
      */
     constructor(apiService) {
         this.apiService = apiService;
+        this.Storage = GlobalContainer.resolve('Storages');
     }
     /**
      * get all faltas of SIGA
      * @param {string} uid
      * @returns {object}
      */
-    getAllFaltas(uid) {
-        return this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
+    async getAllFaltas(uid) {
+        if(!uid){
+            uid = this.Storage.get('token');
+         }
+        return await this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
     }
 }
 export default FaltasService;
