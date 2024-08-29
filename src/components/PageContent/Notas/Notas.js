@@ -54,6 +54,7 @@ class NotasContent extends Component {
                 <Calendar>
                     {this.state.data.map(nota => (
                         <CalendarInfo
+                            key={nota.id}
                             Sigla={nota.id}
                             Text={nota.descricao}
                             Notas={nota.notas.length > 0 ? nota.notas : [0, 0, 0]}

@@ -12,6 +12,8 @@
  */
 import React, { Component } from 'react';
 import Redirect from '../../../services/Browser/Browser';
+import Loading from '../../Loading/Loading';
+import GlobalContainer from '../../../services/DI/Container';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import CalendarInfo from '../../Calendar/Info/Info';
@@ -19,9 +21,25 @@ class ProvasContent extends Component {
     constructor(props){
         super(props);
         this.Navigate = props.navigate;
+        this.state = {
+            loading: false,
+            data: []
+        };
+    }
+    async componentDidMount() {
+        await this.getData();
+    }
+    async getData() {
+        const NotasService = await GlobalContainer.resolve('NotasServices');
+        const data = await NotasService.getExamsDays();
+        this.setState((prev) => ({
+            ...prev,
+            loading: true,
+            data: data
+        }));
     }
     render() {
-        return (
+        return this.state.loading === true ? (
             <>
                 <Title>
                 <a className="nav-link" title="Plano de Ensino" onClick={ ()=>{this.Navigate('/aluno')} }>
@@ -30,39 +48,17 @@ class ProvasContent extends Component {
                     Data das Provas
                 </Title>
                 <Calendar>
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Date={['29/03/22', '14/06/22', '28/06/22']}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Date={['29/03/22', '14/06/22', '28/06/22']}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Date={['29/03/22', '14/06/22', '28/06/22']}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Date={['29/03/22', '14/06/22', '28/06/22']}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Date={['29/03/22', '14/06/22', '28/06/22']}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Date={['29/03/22', '14/06/22', '28/06/22']}
-                     />
+                    { this.state.data.map( (exam) => (
+                        <CalendarInfo 
+                            key={exam.id}
+                            Sigla={exam.id}
+                            Text={exam.descricao}
+                            Date={exam.dates}
+                        />
+                    ) ) }
                 </Calendar>
             </>
-        );
+        ) : <><Loading /></>;
     }
 }
 export default Redirect(ProvasContent);

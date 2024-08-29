@@ -47,9 +47,10 @@ class CalendarInfo extends Component {
                             <div className="info-test">
                                 
                                 {this.Notas.map((nota, index) => (
+                                    !nota == '' ?
                                     <p key={index}>
                                         <b>P{index + 1}</b> - {nota}
-                                    </p>
+                                    </p> : ''
                                 ))}
                             </div>
                         </>

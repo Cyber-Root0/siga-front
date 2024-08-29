@@ -12,7 +12,7 @@
  */
 import { ENDPOINTS } from "../Endpoints";
 import GlobalContainer from "../../DI/Container";
-class DisciplinasService {
+class HorariosService {
     /**
      * DI params
      * @param {object} apiService
@@ -22,16 +22,31 @@ class DisciplinasService {
         this.apiService = apiService;
         this.Storage = GlobalContainer.resolve('Storages');
     }
+    parseTime(timeStr){
+        const [startTime] = timeStr.split('-');
+        const [hours, minutes] = startTime.split(':').map(Number);
+        return hours * 60 + minutes;
+    };
     /**
-     * get all disciplinas of user
+     * get all scchedules of user
      * @param {string} uid
      * @returns {void}
      */
-    getAllDisciplinas(uid) {
+    async getAllSchedule(uid) {
         if(!uid){
             uid = this.Storage.get('token');
          }
-        return this.apiService.get(ENDPOINTS.DISCIPLINAS_ALL, { uid });
+        const aulas = await this.apiService.get(ENDPOINTS.HORARIOS_ALL, { uid });
+        const maped = Object.keys(aulas).reduce((acc, day) => {
+            acc[day] = aulas[day]
+                .map((aula) => ({
+                    time: aula.HORARIO,
+                    subject: aula.DISCIPLINA
+                }))
+                .sort((a, b) => this.parseTime(a.time) - this.parseTime(b.time));
+            return acc;
+        }, {});
+        return maped;
     }
 }
-export default DisciplinasService;
+export default HorariosService;

@@ -58,6 +58,7 @@ class FrequenciaContent extends Component {
                 <Calendar>
                     {this.state.data.map(frequencia => (
                         <CalendarInfo
+                            key={frequencia.ID}
                             Sigla={frequencia.ID}
                             Text={frequencia.DESCRICAO}
                             Progress={ frequencia.TOTAL > 0 ? ((frequencia.PRESENCAS / frequencia.TOTAL).toFixed(2) *100) : 1 }

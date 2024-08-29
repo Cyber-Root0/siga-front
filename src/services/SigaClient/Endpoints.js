@@ -15,5 +15,6 @@ export const ENDPOINTS = {
     DISCIPLINAS_ALL: '/api/disciplinas/all',
     FALTAS_ALL: '/api/faltas/all',
     NOTAS_ALL: '/api/notas/all',
-    ALUNO_INFO: '/api/aluno/all/'
+    ALUNO_INFO: '/api/aluno/all/',
+    HORARIOS_ALL: '/api/horarios/all'
 };
