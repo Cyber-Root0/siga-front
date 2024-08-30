@@ -27,11 +27,17 @@ class DisciplinasService {
      * @param {string} uid
      * @returns {void}
      */
-    getAllDisciplinas(uid) {
-        if(!uid){
+    async getAllDisciplinas(uid) {
+        if (!uid) {
             uid = this.Storage.get('token');
-         }
-        return this.apiService.get(ENDPOINTS.DISCIPLINAS_ALL, { uid });
+        }
+        const inCache = this.Storage.get('disciplinas');
+        if (inCache) {
+            return inCache;
+        }
+        const dados = await this.apiService.get(ENDPOINTS.PROFESSORES, { uid });
+        this.Storage.set('disciplinas', dados, 21600);
+        return dados;
     }
 }
 export default DisciplinasService;

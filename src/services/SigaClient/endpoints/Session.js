@@ -11,6 +11,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import { ENDPOINTS } from "../Endpoints";
+import GlobalContainer from "../../DI/Container";
 class SessionService {
     /**
      * DI Params
@@ -35,7 +36,7 @@ class SessionService {
      * @returns {boolean}
      */
     async validSession(uid){ 
-        const response = await this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
+        const response = await this.apiService.get(ENDPOINTS.ALUNO_INFO, { uid });
         if (response === false || (response.error && response.error === 400) ){
             return false;
         }else{

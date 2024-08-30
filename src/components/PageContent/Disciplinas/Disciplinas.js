@@ -11,58 +11,54 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import GlobalContainer from '../../../services/DI/Container';
+import Loading from '../../Loading/Loading';
 import Redirect from '../../../services/Browser/Browser';
 import Title from './../../Title';
 import Calendar from '../../Calendar/Calendar';
 import CalendarInfo from '../../Calendar/Info/Info';
 class DisciplinasContent extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.Navigate = props.navigate;
+        this.state = {
+            loading: false,
+            data: []
+        };
+    }
+    async componentDidMount() {
+        await this.getData();
+    }
+    async getData() {
+        const DisciplinasService = await GlobalContainer.resolve('Disciplinas');
+        const data = await DisciplinasService.getAllDisciplinas();
+        this.setState( (preV) => ({
+             ...preV,
+             data: data,
+             loading: true
+         }) );
     }
     render() {
-        return (
+        return this.state.loading === true ? (
             <>
                 <Title>
-                    <a className="nav-link" title="Plano de Ensino" onClick={ ()=>{this.Navigate('/aluno')} }>
+                    <a className="nav-link" title="Plano de Ensino" onClick={() => { this.Navigate('/aluno') }}>
                         <i className="bi bi-arrow-left-circle link-icon content-title-icon"></i>
                     </a>
                     Disciplinas
                 </Title>
                 <Calendar>
-                    <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Teacher={'RODRIGO VILELA'}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Teacher={'RODRIGO VILELA'}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Teacher={'RODRIGO VILELA'}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Teacher={'RODRIGO VILELA'}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Teacher={'RODRIGO VILELA'}
-                     />
-                     <CalendarInfo
-                        Sigla='IES011'
-                        Text='Engenharia de Software'
-                        Teacher={'RODRIGO VILELA'}
-                     />
+                    {this.state.data.map(disciplina => (
+                        <CalendarInfo
+                            key={disciplina.ID}
+                            Sigla={disciplina.ID}
+                            Text={disciplina.DESCRICAO}
+                            Teacher={disciplina.NOME}
+                        />
+                    ))}
                 </Calendar>
             </>
-        );
+        ) : <Loading />;
     }
 }
 export default Redirect(DisciplinasContent);

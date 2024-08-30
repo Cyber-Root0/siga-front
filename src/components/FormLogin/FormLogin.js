@@ -12,6 +12,7 @@
  */
 import React, { Component } from 'react';
 import Redirect from '../../services/Browser/Browser';
+import Loading from '../Loading/Loading';
 import InputField from '../InputField/Input';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import Login from '../../services/Login/Login';
@@ -22,13 +23,18 @@ class FormLogin extends Component {
         super(props);
         this.state = {
             login: '',
-            password: ''
+            password: '',
+            processing: false
         };
         this.login = new Login();
         this.submit = this.submit.bind(this);
     }
     async submit(event) {
         event.preventDefault();
+        this.setState((prev) => ({
+            ...prev,
+            processing: true
+        }));
         const { login, password } = this.state;
         const isLoogin = await this.login.login(login, password);
         if (isLoogin) {
@@ -39,6 +45,10 @@ class FormLogin extends Component {
             });
             this.props.navigate('/aluno/');
         } else {
+            this.setState((prev) => ({
+                ...prev,
+                processing: false
+            }));
             Swal.fire({
                 title: 'Error!',
                 text: 'Usuário / Senha incorreto ',
@@ -73,8 +83,10 @@ class FormLogin extends Component {
                         <InputField icon={faLock}>
                             <input type="password" placeholder="Senha" id="password" name="password" required onChange={this.onChangeValue} />
                         </InputField>
-                        <a className="form-a" href="https://siga.cps.sp.gov.br/ALUNO/login_auxproblemas.aspx">Esqueceu sua senha?</a>
-                        <input type="submit" value="Login" className="btn solid"></input>
+                        {this.state.processing === true ? <Loading />  :   
+                           <> <a className="form-a" href="https://siga.cps.sp.gov.br/ALUNO/login_auxproblemas.aspx">Esqueceu sua senha?</a>
+                            <input type="submit" value="Login" className="btn solid"></input> </>
+                        }
                     </form>
                     <form action="#" className="sign-up-form" id="form" name="form">
                         <h2 className="title-form">

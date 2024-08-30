@@ -10,13 +10,14 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-class Storage{
+import lscache from "lscache";
+class Storage {
     /**
      * prefix of keys
      * @returns {string}
      */
-    prefix(){
-        return 'sigafront_';
+    prefix() {
+        return 'sigafront';
     }
     /**
      * set param to be storage on Application
@@ -25,26 +26,30 @@ class Storage{
      * @param {string} expiration=''
      * @returns {any}
      */
-    set(key, data, expiration = ''){
-        if (!key || !data){
+    set(key, data, expiration = 0) {
+        if (!key || !data) {
             throw new Error('Missing two args on functions');
         }
-        localStorage.setItem(this.prefix()+key, data);
+        if (expiration === 0) {
+            lscache.set(this.prefix() + key, data);
+        } else {
+            lscache.set(this.prefix() + key, data, expiration);
+        }
     }
     /**
      * get cacched key value from app
      * @param {string} key=false
      * @returns {any}
      */
-    get(key = false){
-        if (!key){ 
+    get(key = false) {
+        if (!key) {
             throw new Error('missing database key');
         }
-        const data = localStorage.getItem(this.prefix()+key);
-        if (data){
-            return data;
+        const data = lscache.get(this.prefix() + key);
+        if (data == null) {
+            return false;
         }
-        return false; 
+        return data;
     }
 }
 export default Storage;

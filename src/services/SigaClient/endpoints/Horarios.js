@@ -22,7 +22,7 @@ class HorariosService {
         this.apiService = apiService;
         this.Storage = GlobalContainer.resolve('Storages');
     }
-    parseTime(timeStr){
+    parseTime(timeStr) {
         const [startTime] = timeStr.split('-');
         const [hours, minutes] = startTime.split(':').map(Number);
         return hours * 60 + minutes;
@@ -33,9 +33,13 @@ class HorariosService {
      * @returns {void}
      */
     async getAllSchedule(uid) {
-        if(!uid){
+        if (!uid) {
             uid = this.Storage.get('token');
-         }
+        }
+        const inCache = this.Storage.get('horarios');
+        if (inCache){
+           return inCache;   
+        }
         const aulas = await this.apiService.get(ENDPOINTS.HORARIOS_ALL, { uid });
         const maped = Object.keys(aulas).reduce((acc, day) => {
             acc[day] = aulas[day]
@@ -46,6 +50,7 @@ class HorariosService {
                 .sort((a, b) => this.parseTime(a.time) - this.parseTime(b.time));
             return acc;
         }, {});
+        this.Storage.set('horarios', maped, 14400 );
         return maped;
     }
 }

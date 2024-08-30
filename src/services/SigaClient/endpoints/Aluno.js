@@ -27,11 +27,17 @@ class AlunoService {
      * @param {string} uid
      * @returns {void}
      */
-    getAlunoInfo(uid) {
-        if(!uid){
-           uid = this.Storage.get('token');
+    async getAlunoInfo(uid) {
+        if (!uid) {
+            uid = this.Storage.get('token');
         }
-        return this.apiService.get(ENDPOINTS.ALUNO_INFO, { uid });
+        const inCache = this.Storage.get('alunoinfo');
+        if (inCache) {
+            return inCache;
+        }
+        const alunoinfo =  await this.apiService.get(ENDPOINTS.ALUNO_INFO, { uid });
+        this.Storage.set('alunoinfo', alunoinfo, 21600);
+        return alunoinfo;
     }
 }
 export default AlunoService;

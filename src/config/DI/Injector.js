@@ -1,4 +1,5 @@
 import GlobalContainer from "../../services/DI/Container";
+import DisciplinasService from "../../services/SigaClient/endpoints/Disciplinas";
 import SessionService from "../../services/SigaClient/endpoints/Session";
 import ApiService from "../../services/SigaClient/ApiService";
 import AuthService from "../../services/SigaClient/AuthService";
@@ -43,6 +44,9 @@ const dependency = {
     },
     Horarios(){
         return new HorariosService(this.ApiService());
+    },
+    Disciplinas(){
+        return new DisciplinasService(this.ApiService());
     }
 };
 const InjectorDI = () => {

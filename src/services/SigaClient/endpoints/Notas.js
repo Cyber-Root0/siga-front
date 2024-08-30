@@ -31,6 +31,10 @@ class NotasService {
         if (!uid) {
             uid = this.Storage.get('token');
         }
+        const inCache = this.Storage.get('examesdays');
+        if (inCache){
+           return inCache;   
+        }
         const exams = await this.apiService.get(ENDPOINTS.NOTAS_ALL, { uid });
         const exam = exams.map(exam => ({
             id: exam.ID,
@@ -40,6 +44,7 @@ class NotasService {
                 !p.DATA || new Date(p.DATA).toLocaleDateString('pt-BR') == "Invalid Date" ? '' : new Date(p.DATA).toLocaleDateString('pt-BR')
             )) : ['', '', ''],
         }));
+        this.Storage.set('examesdays', exam, 21600 );
         return exam;
     }
     /**
@@ -51,6 +56,10 @@ class NotasService {
         if (!uid) {
             uid = this.Storage.get('token');
         }
+        const inCache = this.Storage.get('notasall');
+        if (inCache){
+           return inCache;   
+        }
         const notas = await this.apiService.get(ENDPOINTS.NOTAS_ALL, { uid });
         const tratado = notas.map(nota => ({
             id: nota.ID,
@@ -61,6 +70,7 @@ class NotasService {
                     : 0
             )
         }));
+        this.Storage.set('notasall', tratado, 1440 );
         return tratado;
     }
 }

@@ -28,10 +28,16 @@ class FaltasService {
      * @returns {object}
      */
     async getAllFaltas(uid) {
-        if(!uid){
+        if (!uid) {
             uid = this.Storage.get('token');
-         }
-        return await this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
+        }
+        const inCache = this.Storage.get('faltas');
+        if (inCache){
+           return inCache;   
+        }
+        const faltas = await this.apiService.get(ENDPOINTS.FALTAS_ALL, { uid });
+        this.Storage.set('faltas', faltas, 240);
+        return faltas;
     }
 }
 export default FaltasService;
