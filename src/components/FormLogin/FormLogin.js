@@ -11,11 +11,11 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import GlobalContainer from '../../services/DI/Container';
 import Redirect from '../../services/Browser/Browser';
 import Loading from '../Loading/Loading';
 import InputField from '../InputField/Input';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import Login from '../../services/Login/Login';
 import Swal from 'sweetalert2';
 import './FormLogin.css';
 class FormLogin extends Component {
@@ -26,8 +26,15 @@ class FormLogin extends Component {
             password: '',
             processing: false
         };
-        this.login = new Login();
+        this.login = GlobalContainer.resolve('Logins');
         this.submit = this.submit.bind(this);
+    }
+    async componentDidMount() {
+        const { navigate } = this.props;
+        const isLoggedIn = await this.login.isLoggedIn();
+        if (isLoggedIn) {
+            navigate('/aluno/');
+        }
     }
     async submit(event) {
         event.preventDefault();

@@ -14,6 +14,9 @@ import React, { Component } from 'react';
 import NavLink from './../NavLink';
 import './Menu.css';
 class Menu extends Component {
+    logout(){
+        /* Implementação do logout */
+    }
     render() {
         return (
             <nav className="nav">
@@ -85,8 +88,8 @@ class Menu extends Component {
                         </li>
                     </ul>
                 </div>
-                <div className="nav-options">
-                    <a href="../index.html" className="nav-link" title="Fazer logout">
+                <div className="nav-options" onClick={this.logout}>
+                    <a href="#" className="nav-link" title="Fazer logout">
                         <i className="bi bi-x-circle-fill link-icon link-exit"></i>
                         <span className="link-text">Sair</span>
                     </a>
