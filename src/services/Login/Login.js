@@ -37,6 +37,9 @@ class Login{
         }
         return false;
     }
+    logout(){
+        this.storage.flushAll();
+    }
     /**
      * valid token of user by API
      * @param {any} uid

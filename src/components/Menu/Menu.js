@@ -11,11 +11,19 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import React, { Component } from 'react';
+import Redirect from '../../services/Browser/Browser';
+import GlobalContainer from '../../services/DI/Container';
 import NavLink from './../NavLink';
 import './Menu.css';
 class Menu extends Component {
+    constructor(props){
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
     logout(){
-        /* Implementação do logout */
+        const loginService = GlobalContainer.resolve('Logins');
+        loginService.logout();
+        this.props.navigate('/');
     }
     render() {
         return (
@@ -99,4 +107,4 @@ class Menu extends Component {
         );
     }
 }
-export default Menu;
+export default Redirect(Menu);

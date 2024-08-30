@@ -51,5 +51,8 @@ class Storage {
         }
         return data;
     }
+    flushAll(){
+        lscache.flush();
+    }
 }
 export default Storage;
