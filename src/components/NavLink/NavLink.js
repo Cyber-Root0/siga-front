@@ -13,7 +13,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './NavLink.css';
-const NavLink = ({ Link, Title, isActive, Icon, children }) => {
+const NavLink = ({ Link, Title, isActive, Icon, children, CallBack }) => {
     const navigate = useNavigate();
     const handleClick = () => {
         navigate(Link);
@@ -21,7 +21,7 @@ const NavLink = ({ Link, Title, isActive, Icon, children }) => {
     return (
         <li className="nav-item">
             <a
-                onClick={handleClick}
+                onClick={() => {CallBack(); handleClick(); } }
                 className={`nav-link ${isActive ? 'nav-link-active' : ''}`}
                 title={Title}
             >

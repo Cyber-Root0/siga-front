@@ -45,6 +45,7 @@ class Storage {
         if (!key) {
             throw new Error('missing database key');
         }
+        lscache.flushExpired();
         const data = lscache.get(this.prefix() + key);
         if (data == null) {
             return false;
@@ -53,6 +54,12 @@ class Storage {
     }
     flushAll(){
         lscache.flush();
+    }
+    flush(){
+        lscache.flushExpired();
+        if (!this.get('token')){
+            lscache.flush();
+        }
     }
 }
 export default Storage;

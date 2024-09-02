@@ -39,11 +39,11 @@
     color: var(--red-dark);
 }
 
-body.dark-theme .office-link {
+.dark-theme .office-link {
     color: var(--red);
 }
 
-body.dark-theme .office-link:hover {
+.dark-theme .office-link:hover {
     color: var(--red-dark);
 }
 .office-footer {

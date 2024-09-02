@@ -23,7 +23,8 @@
 
 .nav-logo {
     width: 175px;
-    content: url(../../assets/Logotipo.png);
+    content: url(../../assets/img/fateclogo2.jpg);
+    border-radius: 101px;
 }
 
 .nav-list {

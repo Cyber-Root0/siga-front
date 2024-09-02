@@ -12,6 +12,7 @@
  */
 import React, { Component } from 'react';
 import Acessibility from '../Accessibility/Acessibility';
+import Accessibilik from 'accessibility-react-widget';
 import Menu from '../Menu/Menu';
 import './Header.css';
 class Header extends Component {

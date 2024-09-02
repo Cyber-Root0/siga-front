@@ -17,9 +17,6 @@ class Acessibility extends Component {
     render() {
         return (
             <div className="accessibility">
-                <AcessibilityLink Title="Acessibilidade">
-                    <i className="uil uil-accessible-icon-alt accessibility-icon"></i>
-                </AcessibilityLink>
                 <AcessibilityLink Title="Modo Constraste">
                     <button className="contrast" role="switch" aria-checked="false" id="contrast">
                     </button>

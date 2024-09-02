@@ -12,6 +12,7 @@
  */
 import React from 'react';
 import {Routes, Route, BrowserRouter } from 'react-router-dom';
+import { ConfigProvider } from '../Provider/GlobalConfig';
 import PrivateRoute from './../../middleware/Auth';
 import Home  from './../../pages/Home';
 import Matricula from '../../pages/Matricula/Matricula';
@@ -23,7 +24,8 @@ import Horarios from '../../pages/Horarios/Horarios';
 import Disciplinas from '../../pages/Disciplinas/Disciplinas';
 const RouteConfig = () => {
    return (
-      <BrowserRouter>
+      <ConfigProvider>
+         <BrowserRouter>
           <Routes>
             <Route path="/" exact element={<Home/>}/>
             <Route path="/aluno/" element={<PrivateRoute Component={Matricula} />} />
@@ -35,6 +37,7 @@ const RouteConfig = () => {
             <Route path="/aluno/disciplinas" element={<PrivateRoute Component={Disciplinas} />} />
          </Routes>   
       </BrowserRouter>
+      </ConfigProvider>
     );
  };
  export default RouteConfig;

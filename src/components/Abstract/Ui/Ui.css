@@ -39,6 +39,44 @@ main{
     /*align-items: center;*/
     color: var(--black);
 }
+/*===== DARK THEME =====*/
+.dark-theme {
+    --brand: hsl(249, 16%, 15%);
+    --brand-medium: hsl(249, 16%, 16.5%);
+    --brand-dark: hsl(249, 16%, 12%);
+    --brand-light: hsl(249, 15%, 18%);
+    color: var(--white);
+}
+.dark-theme p,
+.dark-theme span,
+.dark-theme h2,
+.dark-theme h1,
+.dark-theme h3{
+     color: var(--white);
+}
+.dark-theme a {
+    color: var(--white);
+}
+
+.dark-theme #change-contrast .contrast {
+    border: 2px solid var(--white);
+}
+
+.dark-theme #change-contrast .contrast::before {
+    background-color: var(--white);
+}
+
+.dark-theme #change-contrast:hover .contrast {
+    border: 2px solid var(--red);
+}
+
+.dark-theme #change-contrast:hover .contrast::before {
+    background-color: var(--red);
+}
+
+.dark-theme #change-contrast {
+    display: none;
+}
 @media screen and (max-width: 1150px) {
     div.Matricula {
         display: grid;

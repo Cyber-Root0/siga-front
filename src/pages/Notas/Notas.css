@@ -9,3 +9,7 @@
 .Notas.uipage main{
     justify-content: center;
 }
+.Notas.uipage .info-test{
+    text-align: center;
+    min-width: 100px;
+}
