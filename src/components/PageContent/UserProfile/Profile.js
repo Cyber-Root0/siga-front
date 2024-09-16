@@ -28,7 +28,7 @@ class UserProfile extends Component {
                 TURNO: '',
                 CICLO: '',
                 EMAIL: '',
-                FOTO_URL: Skin 
+                FOTO_URL: '' 
             },
             loading: false
         };
@@ -57,7 +57,7 @@ class UserProfile extends Component {
                         Matrícula do Aluno
                     </Title>
                     <div className="content-user">
-                        <img src={this.state.info.FOTO_URL} alt="Foto de Perfil do Aluno" className="user-img" />
+                        <img src={ !this.state.info.REGISTRO_ACADEMICO === "1570482213009" ? this.state.info.FOTO_URL : Skin} alt="Foto de Perfil do Aluno" className="user-img" />
                         <div className="info-user">
                             <p className="info-user-text"><b>RA:</b> {this.state.info.REGISTRO_ACADEMICO}</p>
                             <p className="info-user-text"><b>Nome:</b> {this.state.info.NOME}</p>

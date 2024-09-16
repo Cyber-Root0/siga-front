@@ -11,7 +11,6 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 import { ENDPOINTS } from "../Endpoints";
-import GlobalContainer from "../../DI/Container";
 class SessionService {
     /**
      * DI Params

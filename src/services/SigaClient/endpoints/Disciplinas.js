@@ -39,5 +39,13 @@ class DisciplinasService {
         this.Storage.set('disciplinas', dados, 21600);
         return dados;
     }
+    async getDisciplinaById(id) {
+        if (!id) {
+            return false;
+        }
+        const disciplinas = await this.getAllDisciplinas();
+        const d = disciplinas.find(obj => obj.ID === id);
+        return d ? d.DESCRICAO : 'nothing';
+    }
 }
 export default DisciplinasService;

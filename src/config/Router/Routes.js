@@ -22,6 +22,7 @@ import Notas from '../../pages/Notas/Notas';
 import ExamDay from '../../pages/Provas/Provas';
 import Horarios from '../../pages/Horarios/Horarios';
 import Disciplinas from '../../pages/Disciplinas/Disciplinas';
+import Manual from '../../pages/Manual';
 const RouteConfig = () => {
    return (
       <ConfigProvider>
@@ -35,6 +36,7 @@ const RouteConfig = () => {
             <Route path="/aluno/agenda/avaliacoes" element={<PrivateRoute Component={ExamDay} />} />
             <Route path="/aluno/agenda/horarios" element={<PrivateRoute Component={Horarios} />} />
             <Route path="/aluno/disciplinas" element={<PrivateRoute Component={Disciplinas} />} />
+            <Route path="/aluno/manual" element={<PrivateRoute Component={Manual} />} />
          </Routes>   
       </BrowserRouter>
       </ConfigProvider>

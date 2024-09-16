@@ -29,7 +29,7 @@ class Options extends Component {
                 />
                 <OptionC 
                     Title="Histórico"
-                    Url="/aluno/historico/"
+                    Url=""
                     Icon="bi bi-card-checklist"
                 />
             </div>

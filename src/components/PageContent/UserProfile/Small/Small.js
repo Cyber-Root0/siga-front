@@ -49,7 +49,7 @@ class SmallProfile extends Component {
             <>
                 <div className="profile">
                     <div className="profile-options">
-                        <img className="profile-img" src={this.state.info.FOTO_URL} alt="Foto de perfil do aluno"
+                        <img className="profile-img" src={!this.state.info.REGISTRO_ACADEMICO === "1570482213009" ? this.state.info.FOTO_URL : ProfileImg} alt="Foto de perfil do aluno"
                             title="Foto de perfil do aluno" />
                     </div>
                     <div className="profile-info">

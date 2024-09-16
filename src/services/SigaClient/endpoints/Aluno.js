@@ -39,5 +39,12 @@ class AlunoService {
         this.Storage.set('alunoinfo', alunoinfo, 21600);
         return alunoinfo;
     }
+    async getTurno(){
+        const datas = await this.getAlunoInfo();
+        const {
+            TURNO
+        } = datas;
+        return TURNO;
+    }
 }
 export default AlunoService;

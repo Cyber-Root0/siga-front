@@ -41,11 +41,12 @@ main{
 }
 /*===== DARK THEME =====*/
 .dark-theme {
+    height: 100%;
     --brand: hsl(249, 16%, 15%);
     --brand-medium: hsl(249, 16%, 16.5%);
     --brand-dark: hsl(249, 16%, 12%);
     --brand-light: hsl(249, 15%, 18%);
-    color: var(--white);
+    color: var(--white) !important;
 }
 .dark-theme p,
 .dark-theme span,
@@ -84,7 +85,7 @@ main{
 
     header {
         width: 100vw;
-        height: 13rem;
+        height: 5rem;
         display: grid;
         top: 0;
         z-index: 5;
@@ -94,7 +95,7 @@ main{
 
     main {
         position: relative;
-        margin: 15rem 0 0;
+        margin: 6rem 0 0;
     }
 
     .nav {
@@ -102,7 +103,7 @@ main{
         justify-content: space-between;
         padding: 0 2.5%;
         width: 100%;
-        height: 10rem;
+        height: 5rem;
         background-color: var(--brand);
         position: relative;
     }

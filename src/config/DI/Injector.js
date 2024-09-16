@@ -8,6 +8,7 @@ import HorariosService from "../../services/SigaClient/endpoints/Horarios";
 import AlunoService from "../../services/SigaClient/endpoints/Aluno";
 import Storage from "../../services/Storage/Storage";
 import NotasService from "../../services/SigaClient/endpoints/Notas";
+import DateHelper from './../../helpers/DateHelper';
 import Login from "../../services/Login/Login";
 import Config from "../Config";
 const dependency = {
@@ -42,8 +43,11 @@ const dependency = {
     NotasServices(){
         return new NotasService(this.ApiService());
     },
+    DateHelpers(){
+        return new DateHelper();
+    },
     Horarios(){
-        return new HorariosService(this.ApiService());
+        return new HorariosService(this.ApiService(), this.Storages(), this.Disciplinas(), this.DateHelpers());
     },
     Disciplinas(){
         return new DisciplinasService(this.ApiService());

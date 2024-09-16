@@ -8,12 +8,13 @@ import './Menu.css';
 const Menu = ({ navigate }) => {
     const { setConfig } = useContext(Context);
     const [globalConfig, setGlobalConfig] = useState('');
-
+    const [menuActive, setMenuActive] = useState(false);
     useEffect(() => {
         setGlobalConfig(GlobalContainer.resolve('Storages').get('globalconfig'));
     }, []);
 
     const defineMenu = async (id) => {
+        setMenu(false);
         await setConfig({ menu: id });
     };
 
@@ -31,6 +32,11 @@ const Menu = ({ navigate }) => {
             theme: !isDark()
         });
     };
+    const setMenu = () =>{
+        setMenuActive(
+            !menuActive
+        );
+    }
     const isDark = () => {
         const { theme } = GlobalContainer.resolve('Storages').get('globalconfig');
         return theme === true;
@@ -42,13 +48,13 @@ const Menu = ({ navigate }) => {
         { link: "/aluno/agenda/horarios", title: "Horários", id: "horario", icon: "bi bi-calendar4-event link-icon" },
         { link: "/aluno/disciplinas", title: "Disciplinas", id: "disciplinas", icon: "bi bi-chat-square-text link-icon" },
         { link: "", title: "Plano de Ensino", id: "planoensino", icon: "bi bi-book link-icon" },
-        { link: "", title: "Manual", id: "manual", icon: "bi bi-question-octagon link-icon" },
+        { link: "/aluno/manual", title: "Manual", id: "manual", icon: "bi bi-question-octagon link-icon" },
         { link: "", title: "Suporte", id: "suporte", icon: "bi bi-telephone-outbound link-icon" }
     ];
     return (
         <nav className="nav">
             <a className="nav-logo" title="Siga 2.0"></a>
-            <div className="nav-menu" id="nav-menu">
+            <div className={`nav-menu ${menuActive ? 'show-menu': ''}`} id="nav-menu">
                 <ul className="nav-list">
                     {menuItems.map(({ link, title, id, icon }) => (
                         <NavLink
@@ -75,7 +81,7 @@ const Menu = ({ navigate }) => {
                     <i className="bi bi-x-circle-fill link-icon link-exit"></i>
                     <span className="link-text">Sair</span>
                 </a>
-                <i className="bi bi-list menu-burger" id="nav-toggle"></i>
+                <i className={`bi bi-list menu-burger ${menuActive ? 'bi-x-lg': ''}`} id="nav-toggle" onClick={setMenu} ></i>
             </div>
         </nav>
     );

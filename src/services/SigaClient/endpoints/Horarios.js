@@ -1,57 +1,59 @@
-/**
- * @fileoverview Integração de um Front-End em React com a API do Siga (PHP)
- * @author Bruno Venancio Alves
- * @contact boteistem@gmail.com
- *
- * Copyright (c) 2024 Bruno Venancio Alves
- * 
- * Permission is granted to use, copy, modify, and distribute this software,
- * provided that this notice remains in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
- */
 import { ENDPOINTS } from "../Endpoints";
-import GlobalContainer from "../../DI/Container";
 class HorariosService {
-    /**
-     * DI params
-     * @param {object} apiService
-     * @returns {void}
-     */
-    constructor(apiService) {
+    constructor(apiService, cacheService, disciplinaService, dateHelper) {
         this.apiService = apiService;
-        this.Storage = GlobalContainer.resolve('Storages');
+        this.cacheService = cacheService;
+        this.disciplinaService = disciplinaService;
+        this.dateHelper = dateHelper;
     }
-    parseTime(timeStr) {
-        const [startTime] = timeStr.split('-');
-        const [hours, minutes] = startTime.split(':').map(Number);
-        return hours * 60 + minutes;
-    };
-    /**
-     * get all scchedules of user
-     * @param {string} uid
-     * @returns {void}
-     */
     async getAllSchedule(uid) {
         if (!uid) {
-            uid = this.Storage.get('token');
+            uid = this.cacheService.get('token');
         }
-        const inCache = this.Storage.get('horarios');
-        if (inCache){
-           return inCache;   
+        const inCache = this.cacheService.get('horarios');
+        if (inCache) {
+            return await this.mapData(inCache);
         }
         const aulas = await this.apiService.get(ENDPOINTS.HORARIOS_ALL, { uid });
-        const maped = Object.keys(aulas).reduce((acc, day) => {
+        const mappedAulas = this.mapAulas(aulas);
+        this.cacheService.set('horarios', mappedAulas, 14400);
+        return this.mapData(mappedAulas);
+    }
+    mapAulas(aulas) {
+        return Object.keys(aulas).reduce((acc, day) => {
             acc[day] = aulas[day]
-                .map((aula) => ({
+                .map(aula => ({
                     time: aula.HORARIO,
                     subject: aula.DISCIPLINA
                 }))
-                .sort((a, b) => this.parseTime(a.time) - this.parseTime(b.time));
+                .sort((a, b) => this.dateHelper.parseTime(a.time) - this.dateHelper.parseTime(b.time));
             return acc;
         }, {});
-        this.Storage.set('horarios', maped, 14400 );
-        return maped;
+    }
+    async mapData(schedule) {
+        const events = [];
+        let eventId = 1;
+
+        for (const [day, classes] of Object.entries(schedule)) {
+            const nextDay = this.dateHelper.getNextDayOfWeek(day);
+
+            for (const { time, subject } of classes) {
+                const { startDate, endDate } = this.dateHelper.getStartAndEndTime(nextDay, time);
+                const subjectName = await this.disciplinaService.getDisciplinaById(subject);
+
+                events.push({
+                    event_id: eventId++,
+                    title: subjectName,
+                    start: startDate,
+                    end: endDate,
+                    color: "#D0010D",
+                    subtitle: "aaa",
+                    editable: false
+                });
+            }
+        }
+
+        return events;
     }
 }
 export default HorariosService;

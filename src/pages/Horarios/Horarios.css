@@ -13,3 +13,12 @@
     flex-wrap: wrap;
     gap: 10px;
 }
+.Horarios.uipage .css-ess3ih {
+    z-index: 3;
+}
+.Horarios.uipage  .rs__event__item {
+z-index: 3!important;
+}
+.Horarios.uipage.dark-theme .css-12aktbw p{
+    color: black;
+}
