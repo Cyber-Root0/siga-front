@@ -128,8 +128,7 @@ class ScheduleContent extends Component {
                     week={this.state.weekRange}
                     day={this.state.weekRange}
                     locale={ptBR}
-                    disableGoToDay={true}
-                    
+                    disableGoToDay={true} 
                 />
             </>
         );
